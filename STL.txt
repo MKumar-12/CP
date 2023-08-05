@@ -1,0 +1,93 @@
+STL => CIA{container,iterator,algorithm}
+
+types of containers :
+array                           queue                                   set
+vector                          priority_queue                          multiset
+listdequeue                     stack                                   map
+map                                                                     multimap
+forward_list                                                            (also avl. in unordered -||-)
+
+
+priority_queue works as min/max heap
+
+
+
+
+std::array<type, arr_size> arr_name;
+
+fn.     at()            - exception safe
+        []
+        front()
+        back()
+
+        data()          - gets the mem B.addr of arr
+        size()          - returns arr size
+        fill()          - fill all elements with same value
+
+arr_size reqd at compile time
+#include<array>
+
+
+
+std::vector<type> vector_name;
+
+fn.     push_back(val)          - inserts the element
+        pop_back()              - remove last element
+        insert()
+        emplace()
+        emplace_back()
+        resize()
+        swap()
+        erase()
+        clear()                 - clears the vector elements
+        reserve(any_fixed_value)      - takes input size of vector(tentative), to avoid unnecessary copy operations
+        capacity()              - returns current vector size in mm
+        size()                  - returns actual no. of elements present in vector
+
+capacity >= size for vector.
+
+works as dynamic arr / linked list.
+
+
+
+
+Associative containers => Set, multi-set, map, multi-map
+
+std::set<type> set_name;
+gives sorted unique elements as output.
+implemented using red-black trees
+insn, deln, search T.C = log n
+
+set<type, std::greater> s_name;        sorts element in descending order
+set<type, std::less> s_name;           Asscending order {DEFAULT}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

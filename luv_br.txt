@@ -1,0 +1,31 @@
+flowchart   
+START/END(terminator)       oval
+i/p,o/p                     //gm  
+processing                  rectangle
+decision making             diamond
+flow(between components)    arrows
+fn.(connector)              circle
+
+
+Djkstra's algo.
+It is a Greedy algo
+Single source shortest path
+For finding shortest path from a given node to final node in  a 
+WEIGHTED GRAPH.
+
+non-weighted graph  :   vector<int> g[N];
+weighted graph      :   vector< pair<int,int> > g[N];  
+
+Path
+a squence of nodes in which each node is visited exactly only once.
+[start n end vertex must be different]
+
+Graph can be represented using
+Adj. matrix      T.C.  O(n*m)
+    using arr/vector
+
+Adj. list        T.C.  O(n logm)
+    using vector/map
+
+    map<int,list<int>>;
+    or  vector<vector<int>>;

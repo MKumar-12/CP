@@ -1,0 +1,9 @@
+Arrays
+
+//Heap allocated arr.
+int *arr = new int[n];
+
+dynamically allocated array  --> VECTOR
+
+no need to pass size of vector.
+can be returned from a fn.

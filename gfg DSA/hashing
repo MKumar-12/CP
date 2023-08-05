@@ -1,0 +1,30 @@
+T.C. for arrays :
+
+Opr.               Sorted             Unsorted
+insert              O(n)                O(1)
+delete              O(n)                O(1)
+search              O(log n)            O(n)
+
+atleast 1 of the operation takes order of n complexity,
+    whereas in hashing :
+    I,D,S opr. are O(1)
+
+
+BST/AVL/red-black trees takes O(log n) time for I,D,S opr.
+
+Hashing is not used when 
+    finding closest values to a key(which is not present)               AVL/Red-black Tree DS can be used
+    sorted data reqd.                                                                  -||-
+    prefix matching    [hence, hashing does exact key search]           Trie DS can be used for this opr.
+
+Trie provides quick prefix searching, useful in dictionary string.
+
+
+Appl. of Hashing :
+Dictionaries
+DB indexing (done either by B/B+ trees or using hash tables)
+Cryptography
+Cache
+Symbol tables in interpretor/compiler
+routers
+getting info. from DB
