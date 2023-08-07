@@ -29,6 +29,7 @@ arr_size reqd at compile time
 
 
 
+
 std::vector<type> vector_name;
 
 fn.     push_back(val)          - inserts the element
@@ -36,7 +37,8 @@ fn.     push_back(val)          - inserts the element
         insert()
         emplace()
         emplace_back()
-        resize()
+        resize()                - resizes the vector to the size specified by the user,
+                                  from the one previously defined initially.
         swap()
         erase()
         clear()                 - clears the vector elements
@@ -46,7 +48,9 @@ fn.     push_back(val)          - inserts the element
 
 capacity >= size for vector.
 
+Doesnt sorts elements on its own.
 works as dynamic arr / linked list.
+#include<vector>
 
 
 
@@ -54,19 +58,74 @@ works as dynamic arr / linked list.
 Associative containers => Set, multi-set, map, multi-map
 
 std::set<type> set_name;
-gives sorted unique elements as output.
+
+fn.     insert(val)             - inserts the element
+
+gives sorted UNIQUE elements as output.
 implemented using red-black trees
 insn, deln, search T.C = log n
 
-set<type, std::greater> s_name;        sorts element in descending order
-set<type, std::less> s_name;           Asscending order {DEFAULT}
+set<type, std::greater<>> s_name;        sorts element in descending order
+set<type, std::less<>> s_name;           Asscending order {DEFAULT}
+
+std::greater<>, std::less<> are both included in <functional> header file
+
+Comparing  user defined user types in sets :
+i.e.,
+class Person {
+        int age;
+        string name;
+
+        public :
+                //defining comparison operator for user defined user datatype
+                bool operator < (const Person& rhs) const { return age < rhs.age; }
+};
+void main() {
+        set<Person> ppl = {{30,"Simran"},{21,"Rupesh"},{52,"Hitesh"}};
+        for(auto e:ppl) 
+                cout<<ppl.age<<" "<<ppl.name;
+}
+#include<set>
+
+
+
+std::multiset<type> set_name;
+can contain duplicates in sorted order
+Implemented using Red Black trees
+insn, deln, search T.C = log n
+
+fn.     insert(val)             - inserts the element
+#include<multiset>
+
+
+
+std::map<T1,T2> map_name;
+elements are sorted by default.
+T1,T2 can accessed using map_name.first or map_name.second
+Stores data/key-value pair on the basis of key {MUST be unique}
+Values can repeat.
+Implemented using AVL/R-B trees
+Used in dictionary type probs
+fn.     insert(std::make_pair(T1,T2))           - inserts a key-value pair OR   map_name[T1] = T2;
+#include<map>
 
 
 
 
+unordered_map<> 
+adds elements in any order.
+#include<unordered_map>
 
 
 
+
+std::stack
+fn.     push(val)               - insert element at top of stack
+        pop()                   - removes topmost element from stack
+        top()                   - returns topmost element OR back()
+        empty()                 - chks if stack empty or not  [returns bool]
+        size()                  - returns the size of stack
+#include<stack>
 
 
 
