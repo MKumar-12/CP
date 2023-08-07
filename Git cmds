@@ -7,11 +7,11 @@ git config --global user.name MKumar-12
 git status
 
 
-//add new files to repo
+//add new files to repo [unstaged files]
 git add -A
 
 
-//commit changes
+//commit changes [staged + unstaged]
 git commit -a
 
 
