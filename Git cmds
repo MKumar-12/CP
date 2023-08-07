@@ -1,6 +1,19 @@
+//set user creds
 git config --global user.email mkubn04@gmail.com
 git config --global user.name MKumar-12
 
+
+//chk status of files
 git status
+
+
+//add new files to repo
+git add -A
+
+
+//commit changes
 git commit -a
+
+
+//upload changes
 git push
