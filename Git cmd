@@ -1,0 +1,6 @@
+git config --global user.email mkubn04@gmail.com
+git config --global user.name MKumar-12
+
+git status
+git commit -a
+git push
