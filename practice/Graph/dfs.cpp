@@ -1,6 +1,6 @@
 //DFS
-//T.C. 
-//S.C. 
+//T.C. O(V+E)
+//S.C. O(V+E)
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -43,7 +43,6 @@ class Graph {
 
         vector<vector<int>> dfs_final_res(int source) {
             vector<int> component;         //returns pass1 component after performing DFS
-            //cout<<"\nPass "<<cc<<endl;
             dfs(adjList,visited,component,source);
             res.push_back(component);
             
