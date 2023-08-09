@@ -1,4 +1,4 @@
-//BFS traversal - sorted ASSCENDING order
+//BFS traversal - sorted ASSCENDING order [uses SET for adj. list]
 
 //insert src node into queue
 //remove it from queue 

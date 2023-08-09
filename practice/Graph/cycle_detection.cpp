@@ -6,13 +6,15 @@
 //But if encountered 2nd parent having visited[true],
 
 //That indicates CYCLE exists.  
+
+
 /*
-    visited[node] = true && node != parent 
+    visited[node] = true && node != parent(of current traversing node) 
 */
 
 //Also, Track Parent(s) of a node.
 
-//T.C. 
+//T.C. O(V+E)
 //S.C. 
 
 #include<bits/stdc++.h>
@@ -23,6 +25,8 @@ class Graph {
     public:
         unordered_map<int,vector<int>> adjList;
         unordered_map<int,bool> visited;
+        unordered_map<int,int> parent;
+        bool cycle = false;
         vector< vector<int> > ans; 
 
         void addEdge(int u, int v) {
@@ -39,10 +43,12 @@ class Graph {
             }
         }
 
-        void bfs(unordered_map<int,vector<int>> &adjList, unordered_map<int,bool> &visited, vector<int> &component, int node){
+        void isCyclicBFS(unordered_map<int,vector<int>> &adjList, unordered_map<int,bool> &visited, vector<int> &component, int node){
+            parent[node] = -1;
+            visited[node] = true;
+            
             queue<int> q;
             q.push(node);
-            visited[node] = true;
             
             while(!q.empty()){
                 int frontNode = q.front();
@@ -50,11 +56,17 @@ class Graph {
                 q.pop();
 
                 // cout<<"\n\nDebug for "<<frontNode;
-                for(auto i:adjList[frontNode]){
-                    if(!visited[i]){
+                for(auto neighbour:adjList[frontNode]){
+                    //chk if the parent of visited neighbour is actually the frontNode or not
+                    //If NOT =>     Cycle exists
+                    if(visited[neighbour] == true && neighbour != parent[frontNode]) {
+                        cycle = true;
+                    }
+                    else if(!visited[neighbour]){
                         // cout<<"\nAdded to q, coz(adj.) '"<<i<<"' Not visited ";
-                        q.push(i);
-                        visited[i] = true;
+                        q.push(neighbour);
+                        visited[neighbour] = true;
+                        parent[neighbour] = frontNode;
                     }
                 }
 
@@ -75,14 +87,14 @@ class Graph {
         //To handle disconnected componenets 
         vector< vector<int> > bfs_final(int src) {
             vector<int> component;
-            bfs(adjList,visited,component,src);
+            isCyclicBFS(adjList,visited,component,src);
             ans.push_back(component);
 
             for(auto i:adjList) {
                 if(!visited[i.first]) {
                     ++cc;
                     component.clear();
-                    bfs(adjList,visited,component,i.first);
+                    isCyclicBFS(adjList,visited,component,i.first);
                     ans.push_back(component);
                 }
             }
@@ -130,6 +142,11 @@ int main()
     }
 
     cout<<"\n\n#Connected Components = "<<cc;
+
+    if(g.cycle)
+        cout<<"\n\nCycle exists in the Graph!!";
+    else    
+        cout<<"\n\nGraph doesnt contains any cycle!!";
 
     return 0;
 }
