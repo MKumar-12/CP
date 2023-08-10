@@ -4,7 +4,6 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-int n,e;
 int cc = 1;
             
 
@@ -61,6 +60,7 @@ class Graph {
 
 int main()
 {
+    int n,e;
     bool direction;
     cout<<"\nEnter no. of Vertices and Edges : ";               // 7 8 or   9 9
     cin>>n>>e;
