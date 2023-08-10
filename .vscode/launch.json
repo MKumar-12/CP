@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/practice/Btree/a.exe",
+            "program": "${workspaceFolder}/practice/Graph/a.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}", 
