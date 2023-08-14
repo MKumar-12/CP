@@ -28,6 +28,7 @@ int n,e;
 
 class Graph {
     public:
+        int node_count;
         unordered_map<int,vector<int>> adjList;
         unordered_map<int,bool> visited;
         vector<int> inDegree;
@@ -60,12 +61,9 @@ class Graph {
             cout<<endl;
             inDegree.resize(n+1);
             for(auto i:adjList) {
-                cout<< i.first << " -> ";
                 for(auto neighbour:i.second) {
-                    cout<<neighbour<<", ";
                     inDegree[neighbour]++;
                 }
-                cout<<endl;
             }
 
             cout<<"\nIndegrees of vertices are as follows : "<<endl;
@@ -81,7 +79,6 @@ class Graph {
             vector<int> topo_order;
             
             queue<int> q;
-            cout<<endl;
             for(auto i:adjList) {
                 if(inDegree[i.first] == 0)
                 {
@@ -91,6 +88,7 @@ class Graph {
             }
             
             while(!q.empty()){
+                node_count++;
                 int node = q.front();
                 topo_order.push_back(node);
                 q.pop();
@@ -126,14 +124,19 @@ int main()
     g.printAdjList();
 
     vector<int> ans2 = g.topoSort();
-    cout<<"\n\nFollowing is the valid topological order :"<<endl;
-    for(auto i:ans2) {
-        if(i == ans2.back()){
-            cout<<i;
-            break;
+    if(n == g.node_count) {
+        cout<<"\n\nGraph doesnt contains any cycle.";
+        cout<<"\n\nFollowing is the valid topological order :"<<endl;
+        for(auto i:ans2) {
+            if(i == ans2.back()){
+                cout<<i;
+                break;
+            }
+            cout<<i<<" ";
         }
-        cout<<i<<" ";
     }
-    
+    else 
+        cout<<"\n\nGraph contains cycle! Topological order cant be defined.";
+
     return 0;
 }

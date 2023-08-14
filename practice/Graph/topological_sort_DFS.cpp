@@ -57,6 +57,7 @@ class Graph {
                 }
             }
 
+            //pushes the curr node onto stack once all its neighbours have been parsed along with itself completely.
             s.push(node);
         }
 
