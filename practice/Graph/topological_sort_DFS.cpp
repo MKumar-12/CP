@@ -20,6 +20,8 @@ class Graph {
     public:
         map<int,list<int>> adjList;
         map<int,bool> visited;
+        //reduces compilation time if vector is used instead of map
+        
         map<int,int> parent;
         vector<vector<int>> res;
         stack<int> s;               // to store the SOURCE, SINK vertex for DFS calls-made
@@ -80,6 +82,8 @@ class Graph {
         }
 
         vector<int> topoSort() {
+            //reversing the stack content as for topo order : 
+            //  the node pushed at begg. was actually a SOURCE node 
             vector<int> topo_order;
 
             while(!s.empty()) {
@@ -103,7 +107,7 @@ int main()
     for(int i = 0; i<e; i++){
         int u,v;
         cout<<"\nEdge "<<i+1<<" is between nodes : ";
-        //  1 2 1 3 2 4 3 4 4 6 4 5 5 6
+        //  1 2 1 3 2 4 3 4 4 6 4 5 5 6 
         cin>>u>>v;
         g.addEdge(u,v,direction);
     }

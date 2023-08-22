@@ -10,6 +10,7 @@ class Graph {
     public:
         unordered_map<int,list<int>> adjList;
         unordered_map<int,bool> visited;
+        
         unordered_map<int,int> parent;
         vector<int> component;
 
@@ -126,6 +127,7 @@ int main()
             }
             cout<<j<<" --> ";
         }
+        cout<<endl;
     }
 
     cout<<"\n\n#Connected Components : "<<cc;
@@ -134,7 +136,7 @@ int main()
     cout<<"\n\nEnter the target node : ";
     cin>>target;
     vector<int> path = g.calc_shortest_path(src,target);
-    cout<<"\n\nLeast distance to target node = "<<path.size() - 1;
+    cout<<"\n\nMin. distance to target node = "<<path.size() - 1;
 
     cout<<"\n\nShortest Path to the target node is as follows : "<<endl;
     for(auto i : path) {

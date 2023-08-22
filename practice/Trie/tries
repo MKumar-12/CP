@@ -1,0 +1,33 @@
+To implment a dictionary, wherein we need to
+Add word
+Search word
+Delete word
+
+    ^ Hashmap can be used, i.e., O(1) T.C. for all operations in Avg. Case
+        <string, bool>  
+
+But it can be O(length) in Worst case for a string with length l.
+
+
+Structure of TRIE:
+class TrieNode {
+    public :
+        char data;
+        TrieNode* children[26];
+        bool isTerminal;
+}
+
+
+Working of Trie :
+INSERTION/ SEARCHING
+                take 1st char from str., 
+                search if it exists from the nodes connected to root
+                    If it exists, follow the path,
+                    else create a new node n then proceed.
+                ^ until str. is traversed completely.
+
+(Every node can have upto 26 childs)
+
+Terminal node : Last char. of each str.
+{Every path in Trie denotes an individual str.} 
+

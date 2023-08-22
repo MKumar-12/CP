@@ -28,7 +28,7 @@ int n,e;
 
 class Graph {
     public:
-        int node_count;
+        int node_count = 0;
         unordered_map<int,vector<int>> adjList;
         unordered_map<int,bool> visited;
         vector<int> inDegree;
@@ -59,7 +59,7 @@ class Graph {
 
         void calc_inDegree(unordered_map<int,vector<int>> &adjList,vector<int> &inDegree) {
             cout<<endl;
-            inDegree.resize(n+1);
+            inDegree.resize(n);
             for(auto i:adjList) {
                 for(auto neighbour:i.second) {
                     inDegree[neighbour]++;
@@ -67,7 +67,7 @@ class Graph {
             }
 
             cout<<"\nIndegrees of vertices are as follows : "<<endl;
-            for(int i=1;i<=n;i++) {
+            for(int i=0;i<n;i++) {
                 cout<<inDegree[i]<<" ";
             }
 
@@ -79,6 +79,8 @@ class Graph {
             vector<int> topo_order;
             
             queue<int> q;
+
+            //pushing all SOURCE nodes into Queue initially.
             for(auto i:adjList) {
                 if(inDegree[i.first] == 0)
                 {
@@ -95,13 +97,14 @@ class Graph {
 
                 for(auto neighbour:adjList[node]){
                     inDegree[neighbour]--;
+                    //pushing any of nodes neighbor if their indegree == 0,
+                    //  after removing currrent node
                     if(inDegree[neighbour] == 0){
                         q.push(neighbour);
                         // topo_order.push_back(neighbour);
                     }    
                 }
             }
-
             return topo_order;
         }
 };
@@ -111,12 +114,13 @@ int main()
     Graph g;
     cout<<"\nEnter no. of vertices and edges : ";   //  6 7     or  9 9     or  6 5
     cin>>n>>e;
+    //considering vertices are numbered starting from 0
     for(int i = 0; i<e; i++){
         int u,v;
         cout<<"\nEdge "<<i+1<<" is between nodes : ";
-        //  1 2 1 3 2 4 3 4 4 6 4 5 5 6
-        //  1 2 2 5 2 4 4 9 4 7 9 5 5 11 7 11 6 3
-        //  1 2 1 3 2 4 3 4 6 5
+        //  0 1 0 2 1 3 2 3 5 3 3 4 4 5                     cycle
+        //  0 1 1 4 1 3 3 8 3 6 8 4 4 7 6 7 5 2             no cycle
+        //  0 1 0 2 1 3 2 3 5 4                             no cycle
         cin>>u>>v;
         g.addEdge(u,v,1);
     }
@@ -126,6 +130,7 @@ int main()
     vector<int> ans2 = g.topoSort();
     if(n == g.node_count) {
         cout<<"\n\nGraph doesnt contains any cycle.";
+        
         cout<<"\n\nFollowing is the valid topological order :"<<endl;
         for(auto i:ans2) {
             if(i == ans2.back()){
@@ -135,6 +140,7 @@ int main()
             cout<<i<<" ";
         }
     }
+
     else 
         cout<<"\n\nGraph contains cycle! Topological order cant be defined.";
 

@@ -3,6 +3,7 @@
 /*
     Input adj. list
     Calc. Topological sort using DFS
+    { topological sort stack contains the SOURCE node at the top }
     Remove stk_top 1 by 1 and calc dist from stk_top to its neighbours using adj_list
 */
 //T.C. O(V+E)
@@ -15,7 +16,7 @@ int n,e;
 class Graph {
     public:
         //storing adj. elements along with their weights
-        unordered_map<int,list<pair<int,int>>> adjList;
+        map<int,list<pair<int,int>>> adjList;
 
         unordered_map<int,bool> visited;
         unordered_map<int,int> parent;
@@ -43,14 +44,14 @@ class Graph {
             for(auto i:adjList) {
                 cout<<i.first<< " -> ";
 
-                for(auto j:i.second)
-                    cout<<"("<<j.first<<", "<<j.second<<"), ";
+                for(auto neighbour:i.second)
+                    cout<<"("<<neighbour.first<<", "<<neighbour.second<<"), ";
             
                 cout<<endl;
             }
         }
 
-        void init_DFS(int node, unordered_map<int,int> &parent, unordered_map<int,bool> &visited, unordered_map<int,list<pair<int,int>>> adjList, vector<int> &component) {
+        void init_DFS(int node, unordered_map<int,int> &parent, unordered_map<int,bool> &visited, map<int,list<pair<int,int>>> adjList, vector<int> &component) {
             visited[node] = true;
             component.push_back(node);
             for(auto i :adjList[node]) {
@@ -83,25 +84,30 @@ class Graph {
             return topo;    
         }
 
-        void reval_dist(int node, unordered_map<int,list<pair<int,int>>> adjList, vector<int> &dist){
+        void reval_dist(int node, int node_index, map<int,list<pair<int,int>>> adjList, vector<int> &dist){
             for(auto neighbour : adjList[node]){
-                if(dist[node] + neighbour.second < dist[neighbour.first])
-                    dist[neighbour.first] = dist[node] + neighbour.second;
+                int neighbour_index = distance(adjList.begin(), adjList.find(neighbour.first));
+                if(dist[node_index] + neighbour.second < dist[neighbour_index])
+                    dist[neighbour_index] = dist[node_index] + neighbour.second;
             }
         }
 
         vector<int> shortest_path(int source) {
             vector<int> dist (n, INT_MAX);
-            dist[source] = 0;
+
+            //finding index of node in dist. vector
+            int src_index = distance(adjList.begin(), adjList.find(source));
+            dist[src_index] = 0;
             
             while(!topo.empty()) {
                 int top = topo.top();
+                int top_index = distance(adjList.begin(), adjList.find(top));
                 topo.pop();
                 
                 //skip unreachable unreachable nodes if src node is not SOURCE_SCC
                 //i.e., dist remains INF
-                if(dist[top] != INT_MAX)
-                    reval_dist(top, adjList, dist);
+                if(dist[top_index] != INT_MAX)
+                    reval_dist(top, top_index, adjList, dist);
             }
 
             return dist;
@@ -114,8 +120,8 @@ int main()
     // bool direction;
     cout<<"\nEnter no. of vertices and edges : ";   //  5 5     or    6 9
     cin>>n>>e;
-    // cout<<"\nIs Graph directed? 1 yes 0 no : "<<endl;
-    // cin>>direction;
+    
+    // DIRECTED + WEIGHTED graph
     for(int i = 0; i<e; i++){
         int u,v,wt;
         cout<<"\nEdge "<<i+1<<" is between nodes with wt : ";
