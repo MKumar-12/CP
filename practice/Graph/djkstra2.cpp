@@ -2,6 +2,8 @@
 // {for shortest path calculation}
 // gives the output as shortest dist of all nodes from the source node {based on any path chosen}
 
+//-----------------------------------SINGLE SOURCE SHORTEST PATH---------------------------------          
+
 //T.C.  O( E logV )
 //S.C.  O( V+E )
 
@@ -57,6 +59,7 @@ class Graph {
 
             while(!st.empty()) {
                 //fetch top record - <distance_from_src, node>
+                //min. value node is always present at begg. of SET
                 auto lowest_dist_node = *(st.begin());
 
                 int nodeDistance = lowest_dist_node.first;
@@ -66,7 +69,7 @@ class Graph {
                 st.erase(st.begin());
 
                 //traverse on its neighbour
-                // to reval their dist. (if reqd.), assuming topNode as src
+                // to reval their dist. (if reqd.), assuming topNode as src     [RELAXATION]
                 for(auto neighbour: adjList[topNode]){
                     if(nodeDistance + neighbour.second < distance[neighbour.first]) {
                         //lesser dist. path available
