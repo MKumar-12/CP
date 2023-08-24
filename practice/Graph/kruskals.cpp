@@ -17,8 +17,8 @@
 
 */
 
-//T.C. 
-//S.C. 
+//T.C. O(Elog E)
+//S.C. O(V)
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -26,39 +26,38 @@ int n,e;
 
 class Graph {
     public:
-        unordered_map<int,list<int>> adjList;
+        // AdjList is not required in Kruskal's ,i.e.,
+        // can be stored in a LinearDS, where {wt u v} is stored for every edge
+        // ordered by wt. ASSC.
+        vector<vector<int>> edges;
+        //map<int,list<pair<int,int>>> edges;
         
-        unordered_map<int,bool> visited;
         vector<int> parent;
         vector<int> rank;
             
         
         //adds edge btw vertices u and v
-        void addEdge(int u, int v, bool dir) {
+        void addEdge(int u, int v, int wt, bool dir) {
             //dir = 1 -> directed graph
             //dir = 0 -> undirected graph
-            adjList[u].push_back(v);
-
-            if(dir == 0)
-                adjList[v].push_back(u);
+            edges.push_back({wt,u,v});
         }
 
         //printing adj. list
-        void printAdjList() {
-            cout<<"\n\nAdj. list are as follows : \n";
-            for(auto i:adjList) {
-                cout<< i.first<< " -> ";
-
-                for(auto j:i.second)
-                    cout<<j<<", ";
-                
-                cout<<endl;
+        void printEdgeList(vector<vector<int>> &edges) {
+            sort(edges.begin(), edges.end());                   // Sorting T.C. O(Elog E)
+            
+            cout<<"\n\nEdges are as follows :\nwt : (u , v) \n\n";
+            for(auto i:edges) {
+                cout<<i[0]<<" : ("<<i[1]<<" , "<<i[2]<<"), "<<endl;
             }
         }
 
-
+    
         //initilizing parent and rank for UNION/FIND opr.
         void initilize(vector<int> &parent, vector<int> &rank) {
+            parent.resize(n);
+            rank.resize(n);
             for(int i = 0; i<n ; i++){
                 parent[i] = i;
                 rank[i] = 0;
@@ -66,8 +65,8 @@ class Graph {
         }
 
 
-        //UNION opr.
-        int findParent(int node, vector<int> parent) {
+        //FIND opr.
+        int findParent(int node, vector<int> parent) {                          //T.C. O(1)
             if(parent[node] == node) 
                 return node;
 
@@ -75,7 +74,9 @@ class Graph {
             return parent[node] = findParent(parent[node], parent);
         }
 
-        void unionSet(int u, int v, vector<int> parent) {
+
+        //UNION opr.
+        void unionSet(int u, int v, vector<int> &parent, vector<int> &rank) {    //T.C. O(1)
             //find parent of both nodes
             u = findParent(u, parent);
             v = findParent(v, parent);
@@ -85,6 +86,7 @@ class Graph {
                 parent[u] = v;
             else if(rank[u] > rank[v])
                 parent[v] = u;
+            
             else {
                 parent[v] = u;              //if rank same, set anyone as parent
                 rank[u]++;                  //and, inc. the rank of parent by 1 
@@ -92,30 +94,52 @@ class Graph {
         }
 
         //Kruskal's Algo.
-        void kruskals() {
+        int kruskals() {
             initilize(parent,rank);
+            int MinWeight = 0;
+
+            /*  For FIND opr. on 2 vertices for each edge, 
+                    parent : same   =>  both vertices are in same cc    -->  Ignore
+                    else            =>  vertices exists in diff. cc     -->  MERGE
+            */
+
+           for(auto i: edges) {
+                //to chk if u and v lie in same component or not
+                int u = findParent(i[1], parent);
+                int v = findParent(i[2], parent);
+                int wt =i[0];
+
+                //in diff component --> MERGE
+                if(u != v) {
+                    MinWeight += wt;
+                    unionSet(u, v, parent ,rank);
+                } 
+           }
+
+           return MinWeight;
 
         }
+        
 };
 
 int main()
 {
     Graph g;
-    bool direction;
-    cout<<"\nEnter no. of vertices and edges : ";
+    cout<<"\nEnter no. of vertices and edges : ";   //  6 9     or  5 6
     cin>>n>>e;
-    cout<<"\nIs Graph directed? 1 yes 0 no : "<<endl;
-    cin>>direction;
+    //============= Vertices should be numbered from 0 =============
     for(int i = 0; i<e; i++){
-        int u,v;
-        cout<<"\nEdge "<<i+1<<" is between nodes : ";
-        cin>>u>>v;
-        g.addEdge(u,v,direction);
+        int u,v,wt;
+        cout<<"\nEdge "<<i+1<<" is between nodes with wt : ";
+        // 4 0 4 4 3 9 3 0 1 0 1 2 3 2 5 3 1 3 2 1 3 2 5 8 1 5 7
+        // 0 3 6 0 1 2 1 3 8 1 2 3 1 4 5 4 2 7 
+        cin>>u>>v>>wt;
+        g.addEdge(u,v,wt,0);
     }
 
-    g.printAdjList();
+    g.printEdgeList(g.edges);
 
-    g.kruskals();
-    
+    cout<<"\n\nMCST = "<<g.kruskals();
+
     return 0;
 }

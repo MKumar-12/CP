@@ -1,0 +1,16 @@
+Stacks:
+Syntax  :       stack<type> stk_name;
+
+uses LIFO
+internally uses std::deque STL container 
+{doesnt doubles the size when its full.}
+
+fn.     
+        empty()         -   returns whether stk empty or not
+        size()          -   returns no. of elements present in stack
+        top()           -   returns a reference to topmost element
+        push(x)         -   inserts x at top of stack
+        pop()           -   removes the topmost element from stack
+
+
+uses header file :          #include<stack>
