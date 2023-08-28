@@ -33,9 +33,9 @@ class Graph {
             component.push_back(node);
             visited[node] = true;
 
-            for(auto i:adjList[node]) {
-                if(!visited[i]){
-                    dfs(adjList,visited,component,i);
+            for(auto neighbour:adjList[node]) {
+                if(!visited[neighbour]){
+                    dfs(adjList,visited,component,neighbour);
                 }
             }
         }

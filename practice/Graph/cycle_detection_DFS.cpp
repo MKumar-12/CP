@@ -1,7 +1,11 @@
 //Cycle Detection in Directed Graph using DFS
 
 /*
-    visited[true] && dfs_visit_active[true]  => CYCLE exists
+    suppose we start DFS from src,
+        we reach to an imm. node    {having an edge back to src}
+        then,
+            while traversing neighbours of imm. node,
+                visited[true] && dfs_visit_active[true]  => CYCLE exists
 */
 //T.C. 
 //S.C. 
@@ -15,7 +19,6 @@ class Graph {
         map<int,list<int>> adjList;
         map<int,bool> visited;
         map<int,bool> dfs_active_visit;
-        map<int,int> parent;
         vector<vector<int>> res;
         bool cycle = false;
 

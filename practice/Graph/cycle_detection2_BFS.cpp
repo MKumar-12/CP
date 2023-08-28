@@ -1,7 +1,7 @@
 //Cycle Detection in Undirected Graph using BFS
 
 //During BFS,
-//for any given node :   <while adding to q>
+//for any given node :   <while adding it to q>
 //Neglect its adj. node    {Condition :   already visited + its parent}
 //But if encountered 2nd parent having visited[true],
 
@@ -63,7 +63,7 @@ class Graph {
                         cycle = true;
                     }
                     else if(!visited[neighbour]){
-                        // cout<<"\nAdded to q, coz(adj.) '"<<i<<"' Not visited ";
+                        // cout<<"\nAdded to q, coz(adj.) '"<<neighbour<<"' Not visited ";
                         q.push(neighbour);
                         visited[neighbour] = true;
                         parent[neighbour] = frontNode;
