@@ -1,8 +1,10 @@
 Djkstra's vs Prim's 
 
-    in Djkstra, while standing at any node, we usually notice the dist. to reach its neighbour as
+    in Djkstra, while standing at any node, 
+        we usually notice the dist. to reach its neighbour as
         the sum of dist. reqd. from starting at SOURCE to neighbour
 
 whereas, 
-    in Prim, while standing at any point, we look for the min. outgoing costs to its neighbour
+    in Prim, while standing at any point, 
+        we look for the min. outgoing costs to its neighbour
         the best/lowest shortest length for reaching to neighbour nodes is noticed.

@@ -5,7 +5,17 @@
 //mark it VISITED
 //print the node onto screen.
 //push its neighbors onto stack using adj. list [if NOT visited already]
-//repeat same if any node remains UNVISITED from visited queue.
+//  repeat until !queue.empty()
+
+
+//repeat same if any node remains UNVISITED from visited queue. {in case of forest}
+
+/*
+    Might cause more no. of BFS calls than actual no. of cc exists
+        >> because we're using unordered map, 
+            also
+                we must apply BFS in topological order.
+*/
 
 //T.C. O(V+2E) or       O(V+E)
 //S.C. 
@@ -14,7 +24,6 @@
 #include<unordered_map>
 #include<list>
 #include<vector>
-#include<map>
 #include<queue>
 using namespace std;
 int n,e;
@@ -22,7 +31,8 @@ int n,e;
 class Graph {
     public:
         unordered_map<int,list<int>> adjlist;         //saves the edge connections of a vertex.
-        vector<int> ans;                    //returns BFS traversal
+        vector<int> component;
+        vector<vector<int>> ans;                    //returns BFS traversal
         unordered_map<int,bool> visited;    //maintains status of nodes being traversed or not
         //initially all values set as FALSE
 
@@ -50,14 +60,14 @@ class Graph {
         }
 
         //Traversal phase
-        void traverse(unordered_map<int,list<int>> &adjlist,unordered_map<int,bool> &visited,vector<int> &ans, int node) {
+        void traverse(unordered_map<int,list<int>> &adjlist,unordered_map<int,bool> &visited,vector<int> &component, int node) {
             queue<int> q;
             q.push(node);
             visited[node] = true;
 
             while(!q.empty()){
                 int FirstNode = q.front();
-                ans.push_back(FirstNode);
+                component.push_back(FirstNode);
                 q.pop();
 
                 //storing elements connected to HEAD into queue, if NOT visited already.
@@ -71,14 +81,25 @@ class Graph {
         }
 
 
-        //running BFS traversal for all components of a graph
-        vector<int> bfs(int source) {
-            traverse(adjlist,visited,ans,source);
+        //running BFS traversal for nodes in the connected component {for undirected G mostly}
+        // isolated node gets skipped
+        // {to avoid this, count for }
+
+        /*
+            in case of directed graph,
+                if we dont provide the src as SOURCE SCC, 
+                    then only nodes reachable from src actually represents the BFS of that node;
+        */
+        vector<vector<int>> bfs(int source) {
+            traverse(adjlist,visited,component,source);
+            ans.push_back(component);
 
             //to chk if any other component exists, n to run bfs on it.
             for(auto i: adjlist) {
                 if(!visited[i.first]) {
-                    traverse(adjlist,visited,ans,i.first);
+                    component.clear();
+                    traverse(adjlist,visited,component,i.first);
+                    ans.push_back(component);
                 }
             }
             return ans;
@@ -99,11 +120,8 @@ int main()
     for(int i = 0; i<e; i++){
         int u,v;
         cout<<"\nEdge "<<i+1<<" is between nodes : ";
-        /*
-            0 1 1 2 2 3 3 5 2 4 4 6 5 6
-        
-            1 2 2 5 2 4 4 9 4 7 9 5 5 11 7 11
-        */
+        //    0 1 1 2 2 3 3 5 2 4 4 6 5 6
+        //    1 2 2 5 2 4 4 9 4 7 9 5 5 11 7 11
         cin>>u>>v;
         g.addEdge(u,v,direction);
     }
@@ -115,13 +133,18 @@ int main()
     cout<<"\nEnter source node : ";
     cin>>src;
     cout<<"\nBFS traversal is as follows : \n";
-    vector<int> res = g.bfs(src);
+    vector<vector<int>> res = g.bfs(src);
+    int pass = 1;
     for(auto i:res) {
-        if(i == res.back()){
-            cout<<i;
-            break;
+        cout<<"Pass "<<pass++<<" : ";
+        for(auto j:i){
+            if(j == i.back()){
+                cout<<j;
+                break;
+            }
+            cout<<j<<" --> ";
         }
-        cout<<i<<" --> ";
+        cout<<endl;
     }
     
     return 0;

@@ -13,7 +13,7 @@ int n,e;
 
 class Graph {
     public:
-        unordered_map<int,list<pair<int,int>>> adjList;
+        unordered_map<int, list<pair<int, int>>> adjList;
 
         //adds edge btw vertices u and v
         void addEdge(int u, int v, int wt, bool dir) {

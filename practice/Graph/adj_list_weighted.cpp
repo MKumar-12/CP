@@ -1,20 +1,16 @@
 //Adj. list of a WEIGHTED graph [Suitable for sparse graph]
 //T.C. O(V+2E) or       O(V+E)
-//S.C. 
+//S.C. O(V+E)
 
 #include<iostream>
 #include<unordered_map>
 #include<vector>
-#include<list>
-//#include<map>
 using namespace std;
 
 class Graph {
     public:
-        void initialize(int N) {
-            vector<pair<int,int>> adj[N];
-        }
-        
+        unordered_map<int, vector<pair<int, int>>> adj;
+         
         //adds edge btw vertices u and v
         void addEdge(int u, int v, int wt,bool dir) {
             //dir = 1 -> directed graph
@@ -28,10 +24,9 @@ class Graph {
         void printAdjList() {
             cout<<"\n\nAdj. list are as follows : \n";
             for(auto i:adj) {
-                cout<< i.first<< "-> ";
+                cout<<i.first<<" : ";
                 for(auto j:i.second)
-                    cout<<j<<", ";
-                
+                    cout<<"("<<j.first<<", "<<j.second<<"), ";
                 cout<<endl;
             }
         }
@@ -41,21 +36,18 @@ int main()
 {
     int n,m;
     bool direction;
-    cout<<"\nEnter no. of vertices : ";
-    cin>>n;
-    cout<<"\nEnter no. of edges : ";
-    cin>>m;
+    cout<<"\nEnter no. of vertices and edges : ";       // 4 5
+    cin>>n>>m;
     cout<<"\nGraph directed? 1: yes 0:no \n"; 
     cin>>direction;
 
     Graph g;
-    g.initialize(n);
     for(int i = 0; i<m; i++){
         int u,v,wt;
-        cout<<"\nEdge "<<i+1<<" is between nodes : ";
-        cin>>u>>v;
-        cout<<"\nEdge Weight : ";
-        cin>>wt;
+        cout<<"\nEdge "<<i+1<<" is between nodes with weight : ";
+        // 0 1 5 0 2 8 1 2 9 1 3 2 2 3 6
+        cin>>u>>v>>wt;
+
         g.addEdge(u,v,wt,direction);
     }
 

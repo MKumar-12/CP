@@ -12,9 +12,7 @@
 
 #include<iostream>
 #include<unordered_map>
-#include<list>
 #include<vector>
-#include<map>
 #include<set>
 #include<queue>
 using namespace std;
