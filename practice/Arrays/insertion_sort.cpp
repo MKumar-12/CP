@@ -53,6 +53,7 @@ int main()
     }
     isort1(A,n);
     cout<<"\n\n{1}Sorted arr is :\t";
+ 
     for(int i=0; i<n; i++) {
         cout<<A[i]<< " ";
     }

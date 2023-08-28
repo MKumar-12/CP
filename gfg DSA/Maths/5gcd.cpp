@@ -34,11 +34,11 @@ int gcd3(int m, int n){                                    //T.C. O( log(min[a,b
 int main()
 {
     int a, b,res = 0;
-    cout<<"Enter 2 no. : ";
-    cin>>a>>b;
+    // cout<<"Enter 2 no. : ";
+    // cin>>a>>b;
     //res = gcd1(a,b);
-    //res = gcd2(a,b);
-    res = gcd3(a,b);
+    res = gcd2(10,4);
+    // res = gcd3(a,b);
     cout<<"GCD is : "<<res;
     return 0;
 }

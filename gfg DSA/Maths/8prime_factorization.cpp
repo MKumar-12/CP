@@ -69,3 +69,87 @@ int main()
         prime_fact_optimized(n);
     return 0;
 }
+
+
+
+
+/*
+==========================================================================
+Displaying the count of primes in a no. 
+==========================================================================
+int main(void) {
+
+  // START CODE
+  int n;
+  int p_ctr = 0;
+  scanf("%d", &n);
+
+  if (n < 2)
+    printf("\nNot in valid range");
+
+  else {
+    int temp = n;
+    int ctr = 0;
+    // factor 2
+    while (temp % 2 == 0 && temp > 0) {
+      ctr++;
+      temp = temp / 2;
+    }
+    if (ctr == 1) {
+      printf("2: %d time\n", ctr);
+      p_ctr++;
+    } else if (ctr > 1) {
+      printf("2: %d times\n", ctr);
+      p_ctr++;
+    }
+
+    temp = n;
+    ctr = 0;
+    // factor 3
+    while (temp % 3 == 0 && temp > 0) {
+      ctr++;
+      temp = temp / 3;
+    }
+    if (ctr == 1) {
+      printf("3: %d time\n", ctr);
+      p_ctr++;
+    } else if (ctr > 1) {
+      printf("3: %d times\n", ctr);
+      p_ctr++;
+    }
+
+    temp = n;
+    ctr = 0;
+    // factor 5
+    while (temp % 5 == 0 && temp > 0) {
+      ctr++;
+      temp = temp / 5;
+    }
+    if (ctr == 1) {
+      printf("5: %d time\n", ctr);
+      p_ctr++;
+    } else if (ctr > 1) {
+      printf("5: %d times\n", ctr);
+      p_ctr++;
+    }
+
+    temp = n;
+    ctr = 0;
+    // factor 7
+    while (temp % 7 == 0 && temp > 0) {
+      ctr++;
+      temp = temp / 7;
+    }
+    if (ctr == 1) {
+      printf("7: %d time\n", ctr);
+      p_ctr++;
+    } else if (ctr > 1) {
+      printf("7: %d times\n", ctr);
+      p_ctr++;
+    }
+  }
+
+  printf("Total distinct prime factors: %d", p_ctr);
+
+  // END CODE
+  */

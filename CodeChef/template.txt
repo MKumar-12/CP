@@ -1,0 +1,33 @@
+414 Profit increment
+506 Odd pair sum
+=========================================================================================
+
+int t;
+	cin>>t;
+	while(t>0) {
+	    
+	    cout<<endl;
+	    t--;
+	}
+
+
+
+*****************************************************************************************
+
+Disabling synchronization and untying streams : 
+    Can help improve performance in scenarios where efficiency is critical.
+    
+// C++ streams will not be synchronized with C standard I/O, 
+    which can lead to potentially faster I/O operations.
+    >>      ios_base::sync_with_stdio(false);
+    
+// Setting cin.tie(0) unties cin from any stream, 
+    which can improve the efficiency of input operations by preventing 
+    unnecessary flushing of the output buffer before input.
+    >>      cin.tie(0);
+    
+// set the precision (number of decimal places) for floating-point numbers 
+    that will be displayed using the cout stream.
+    >>      cout.precision(2);
+
+*****************************************************************************************
