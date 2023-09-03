@@ -8,7 +8,7 @@ const int N = 1e5+10;
 const int INF = 1e9+10;
 
 //defining wieghted Graph
-vector<pair<int,int> > g[N];        //stored as <node, wt>
+vector<pair<int, int>> g[N];        //stored as <node, wt>
 
 
 void djkstra(int source) {
@@ -43,7 +43,10 @@ void djkstra(int source) {
 
 int main()
 {
-    int n,m;        //n edges, m vertices
+    int n,m;        //n vertices, m edges
+    cout<<"\nEnter no. of Vertices and Edges : ";               // 7 8 or   9 9
+    cin>>n>>m;
+    cout<<"\nEnter the edges btw vertices u,v with wt. w :"<<endl;
     for(int i=0; i<m; i++) {
         int x,y,wt;
         cin>> x >> y >> wt;
