@@ -1,0 +1,33 @@
+Default template :
+
+getOptimal(Item_arr[], int n) 
+{
+    initilize res 
+
+    while( all items are not iterated)
+        i = select_an_item()
+        if(feasible(i))
+            res = res + i
+
+    return res
+}
+
+
+Appln. of greedy algo. 
+Job/Event schedulling
+Fractional k/s
+Activity selection
+MST : Prims, Kruskals
+Dijkstra
+Huffmann coding
+* finding close to optimal soln. for NP hard prob. like Travelling salesman
+
+
+
+In greedy, 
+    we just simply pick the best looking option at a given instance, 
+    without realizing whole prob        --> thus, leading to incorrect soln. many times. 
+
+    Limitations :   
+        Coins prob.
+        Longest dist. calc.

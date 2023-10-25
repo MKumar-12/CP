@@ -1,6 +1,6 @@
 //Topological Sort  {Appl. of DFS}
 /*
-    linear ordeing of vetices s.t. for every edge u -> v,
+    linear ordeing of vertices s.t. for every edge u -> v,
         u always appears before v in that ordering 
 */
 //Can only be applied to DAGs {i.e., cant be applied if cycle exists.}

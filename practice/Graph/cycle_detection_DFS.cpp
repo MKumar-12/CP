@@ -18,7 +18,8 @@ class Graph {
     public:
         map<int,list<int>> adjList;
         map<int,bool> visited;
-        map<int,bool> dfs_active_visit;
+        map<int,bool> dfs_active_visit;         //stores the list of active nodes in current DFS call.
+        // seperates out the cycle condition in directed G.
         vector<vector<int>> res;
         bool cycle = false;
 

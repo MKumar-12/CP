@@ -69,7 +69,7 @@ class Graph {
                 st.erase(st.begin());
 
                 //traverse on its neighbour
-                // to reval their dist. (if reqd.), assuming topNode as src     [RELAXATION]
+                // to recompute their dist. (if reqd.), assuming topNode as src     [RELAXATION]
                 for(auto neighbour: adjList[topNode]){
                     if(nodeDistance + neighbour.second < distance[neighbour.first]) {
                         //lesser dist. path available

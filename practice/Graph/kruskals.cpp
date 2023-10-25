@@ -131,7 +131,7 @@ int main()
     for(int i = 0; i<e; i++){
         int u,v,wt;
         cout<<"\nEdge "<<i+1<<" is between nodes with wt : ";
-        // 4 0 4 4 3 9 3 0 1 0 1 2 3 2 5 3 1 3 2 1 3 2 5 8 1 5 7
+        // 4 0 4 4 3 9 3 0 1 0 1 2 3 2 5 3 1 3 2 1 3 2 5 8 1 5 7 
         // 0 3 6 0 1 2 1 3 8 1 2 3 1 4 5 4 2 7 
         cin>>u>>v>>wt;
         g.addEdge(u,v,wt,0);
