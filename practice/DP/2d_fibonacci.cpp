@@ -1,4 +1,4 @@
-//Printing nth Fibonacci series using DP                          BOTTOM-UP approach
+//Printing nth Fibonacci series using DP                            BOTTOM-UP approach
 // {Space Optimization}
 //T.C.  O(n)
 //S.C.  O(1)
@@ -7,8 +7,6 @@
 //  0 1 1 2 3 5 8 13 21 34 55 ...
 
 #include<iostream>
-#include<vector>
-#include<cstring>
 using namespace std; 
 
 int fibo(int n) {

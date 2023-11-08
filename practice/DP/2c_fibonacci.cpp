@@ -5,16 +5,15 @@
 
 #include<iostream>
 #include<vector>
-#include<cstring>
 using namespace std; 
 
 int fibo(int n) {
-    vector<int> DP(n+1);
+    vector<int> DP(n+1, -1);                    // S.C -> only for creation of vector ~ O(n)
     
-    // initialization
-    for(int i = 0; i < n+1; i++) {
-        DP[i] = -1;
-    }
+    // initialization   {NOT REQUIRED}
+    // for(int i = 0; i < n+1; i++) {
+    //     DP[i] = -1;
+    // }
 
     // base-cases
     DP[0] = 0;

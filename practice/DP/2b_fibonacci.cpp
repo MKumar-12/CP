@@ -5,9 +5,7 @@
 
 #include<iostream>
 #include<vector>
-#include<cstring>
 using namespace std; 
-vector<int> DP(101);
 
 int fibo(int n, vector<int> &DP) {
     if(n == 0 || n == 1)
@@ -26,9 +24,10 @@ int main()
     cout<<"\nEnter the reqd. element of Fibonacci series : ";
     cin>>reqd; 
 
-    for(int i = 0; i < 101; i++) {
-        DP[i] = -1;
-    }
+    vector<int> DP(reqd + 1, -1);
+    // for(int i = 0; i <= reqd; i++) {
+    //     DP[i] = -1;
+    // }
 
     cout<<"\n"<<fibo(reqd, DP)<<" is "<<reqd<<"'th element in fibonacci series!";
     return 0;

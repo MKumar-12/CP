@@ -3,16 +3,15 @@
 //S.C.  O(n)
 
 #include<iostream>
-#include<vector>
 #include<cstring>
 using namespace std; 
-int DP[101];
+int DP[101];                // S.C ->   O(n) + O(n) max. recc. depth      ~   O(n) 
 
 int fibo(int n) {
     if(n == 0 || n == 1)
         return n;
 
-    if(DP[n] != 0)
+    if(DP[n] != -1)
         return DP[n];
     
     return DP[n] = fibo(n-1) + fibo(n-2);
