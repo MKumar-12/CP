@@ -56,7 +56,7 @@ int main()
     cout<<"\nEnter the operation u wish to perform onto stack : ";
     cout<<"\nPress 1. for PUSH operation.";
     cout<<"\n2. for POP operation.";
-    cout<<"\n3. for obtaining HEAD.";
+    cout<<"\n3. for obtaining TOP.";
     cout<<"\n4. for obtaining stack size.";
     cout<<"\n5. to display stack content.";
     cout<<"\n6. to continue.";

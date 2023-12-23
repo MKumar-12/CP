@@ -10,14 +10,14 @@ fn.(connector)              circle
 Djkstra's algo.
 It is a Greedy algo
 Single source shortest path
-For finding shortest path from a given node to final node in  a 
+For finding shortest path from a given node to final node in a 
 WEIGHTED GRAPH.
 
 non-weighted graph  :   vector<int> g[N];
 weighted graph      :   vector< pair<int,int> > g[N];  
 
 Path
-a squence of nodes in which each node is visited exactly only once.
+a sequence of nodes in which each node is visited exactly only once.
 [start n end vertex must be different]
 
 Graph can be represented using
