@@ -1,6 +1,6 @@
 // Divide array into sub-arrays with max. difference
-//T.C. 
-//S.C. 
+//T.C. O(n log n)
+//S.C. O(n)
 
 #include<bits/stdc++.h>
 using namespace std;
