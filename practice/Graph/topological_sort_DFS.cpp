@@ -1,6 +1,6 @@
 //Topological Sort  {Appl. of DFS}
 /*
-    linear ordeing of vertices s.t. for every edge u -> v,
+    linear ordering of vertices s.t. for every edge u -> v,
         u always appears before v in that ordering 
 */
 //Can only be applied to DAGs {i.e., cant be applied if cycle exists.}
@@ -22,7 +22,6 @@ class Graph {
         map<int,bool> visited;
         //reduces compilation time if vector is used instead of map
         
-        map<int,int> parent;
         vector<vector<int>> res;
         stack<int> s;               // to store the SOURCE, SINK vertex for DFS calls-made
 

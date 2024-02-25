@@ -10,7 +10,7 @@
     
     2 major opr. :       
         UNION   --> for merging/combining 2 vertices belong to diff set.
-                    (shorter tree is merged into the londer one)
+                    (shorter tree is merged into the longer one)
         FIND    --> finds the parent of curr node
 
     *********************************************************************************
@@ -30,13 +30,12 @@ class Graph {
         // can be stored in a LinearDS, where {wt u v} is stored for every edge
         // ordered by wt. ASSC.
         vector<vector<int>> edges;
-        //map<int,list<pair<int,int>>> edges;
         
         vector<int> parent;
         vector<int> rank;
             
         
-        //adds edge btw vertices u and v
+        //adds edge btw vertices u and v - DIRECTED treew here
         void addEdge(int u, int v, int wt, bool dir) {
             //dir = 1 -> directed graph
             //dir = 0 -> undirected graph
@@ -54,14 +53,13 @@ class Graph {
         }
 
     
-        //initilizing parent and rank for UNION/FIND opr.
-        void initilize(vector<int> &parent, vector<int> &rank) {
+        //initializing parent and rank for UNION/FIND opr.
+        void initialize(vector<int> &parent, vector<int> &rank) {
             parent.resize(n);
-            rank.resize(n);
-            for(int i = 0; i<n ; i++){
+            rank.resize(n, 0);
+
+            for(int i = 0; i<n ; i++)
                 parent[i] = i;
-                rank[i] = 0;
-            }
         }
 
 
@@ -82,12 +80,9 @@ class Graph {
             v = findParent(v, parent);
 
             //if rank diff exists,   set 1 with lower rank as a child of other
-            if(rank[u] < rank[v])
-                parent[u] = v;
-            else if(rank[u] > rank[v])
-                parent[v] = u;
+            rank[u] < rank[v] ? parent[u] = v : parent[v] = u;
             
-            else {
+            if(rank[u] == rank[v]) {
                 parent[v] = u;              //if rank same, set anyone as parent
                 rank[u]++;                  //and, inc. the rank of parent by 1 
             }
@@ -95,7 +90,7 @@ class Graph {
 
         //Kruskal's Algo.
         int kruskals() {
-            initilize(parent,rank);
+            initialize(parent,rank);
             int MinWeight = 0;
 
             /*  For FIND opr. on 2 vertices for each edge, 
@@ -117,7 +112,6 @@ class Graph {
            }
 
            return MinWeight;
-
         }
         
 };

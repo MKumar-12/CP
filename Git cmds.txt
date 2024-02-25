@@ -1,0 +1,43 @@
+//set user creds
+git config --global user.email mkubn04@gmail.com
+git config --global user.name MKumar-12
+
+
+// create a new repo on system [after being setting it as pwd in CLI]
+git init
+
+
+// To clone a Remote repo 
+git clone {REPO_URL}
+
+
+//chk status of files
+git status
+
+
+//add new files to repo [unstaged files]
+git add .
+
+
+//commit changes [staged + unstaged]
+git commit -am "commit_msg"
+
+
+//upload changes to Remote repo
+git push
+
+
+
+// Pull Requests [PR] - combination of {fetch + merge}
+1st clone the (far)Remote repo to self's github repos.
+Make changes to self's local repo.
+Commit/push updates
+Lastly, create a pull request that would be reviewed by owner and merged {if applicable}
+
+
+//List all branches :
+git branch -a
+
+
+//Switch git branch :
+git checkout <existing_branch_name>

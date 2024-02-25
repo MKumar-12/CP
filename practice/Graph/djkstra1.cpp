@@ -7,7 +7,7 @@ using namespace std;
 const int N = 1e5+10;
 const int INF = 1e9+10;
 
-//defining wieghted Graph
+//defining weighted Graph
 vector<pair<int, int>> g[N];        //stored as <node, wt>
 
 

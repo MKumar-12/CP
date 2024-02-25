@@ -1,6 +1,6 @@
 //SLiding window/2 ptr. approach
-//T.C. O(n)
-//S.C. 
+//T.C.  O(n)
+//S.C.   
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -30,10 +30,10 @@ int smallestSubsetWithSum(vector<int> &nums, int n, int target) {
 int main()
 {
     vector<int> nums;
-    int n=0;
+    int n = 0;
     cout<<"No. of elements : ";
     cin>>n;
-    cout<<"\nEnter elements  : \t";
+    cout<<"\nEnter elements  : "<<endl;
     for (int i = 1; i <= n; i++) {
         int temp;
         cin>> temp;

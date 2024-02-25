@@ -47,7 +47,7 @@ class Graph {
             vector<int> distance(n,INT_MAX);
             
             /*  dist to other nodes can be saved as SET / Priority QUEUE : <pair<int,int>>
-                    where,  pair.first represetns the distance_from_src and
+                    where,  pair.first represents the distance_from_src and
                             pair.second represents the curr_node
             */
 

@@ -1,23 +1,25 @@
 //Prefix Sum for sub-arrays
-//T.C. 
-//S.C. 
+//T.C.  O(n^2)
+//S.C.  O(1)
 
 #include<iostream>
 using namespace std;
 
 int main()
 {
-    int a[4] = {5,4,-1,3};
-    int max_sum=0;
+    int a[4] = {5,-4,-1,3};
+    int max_sum = 0;
 
     //Prefix Sum
     for(int i = 0; i < 4; i++){                     //T.C. O(n^2)
         int sum = 0;
         //sets sum as 0 when 1st ptr. moves ahead
+        
         for(int j = i; j < 4; j++) {
             //second ptr.
             sum += a[j];
-            cout<<"\n"<<sum;
+            // cout<<"\n"<<sum;
+            
             if(sum > max_sum)
                 max_sum = sum;
         }

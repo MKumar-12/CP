@@ -1,0 +1,6 @@
+
+-                       INSERTION(B)        I(E)            DELETION(B)        D(E)
+
+Array/Vector               O(n)             O(1)               O(n)            O(1)
+`                                         Amortized
+

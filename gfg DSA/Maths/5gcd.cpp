@@ -1,8 +1,11 @@
 //GCD/HCF of 2 no.
-//even non-prime integers can have GCD as 1, i.e. 9 n 10
+
+// even non-prime integers can have GCD as 1, i.e. 9 n 10
+// & GCD of co-primes = 1
 
 #include<iostream>
 using namespace std;
+
 int gcd1(int x, int y){                                     //Euclidean algo T.C = O(n)            
     if(x == y)
         return x;
@@ -33,12 +36,12 @@ int gcd3(int m, int n){                                    //T.C. O( log(min[a,b
 
 int main()
 {
-    int a, b,res = 0;
+    int a, b, res = 0;
     // cout<<"Enter 2 no. : ";
     // cin>>a>>b;
-    //res = gcd1(a,b);
+    // res = gcd1(a,b);
     res = gcd2(10,4);
     // res = gcd3(a,b);
-    cout<<"GCD is : "<<res;
+    cout<<"\nGCD is : "<<res;
     return 0;
 }
